@@ -21,3 +21,36 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+var timeDisplayEl = $('#currentDay');
+var current24Hour = dayjs().format('H');
+// selecting all slot items to change background color
+// var timeSlots = $("[class*='slot']")
+var timeSlots = document.getElementsByClassName('slot')
+
+function timeDisplay() {
+  var currentTime = dayjs().format('MMM/D/YYYY h:m a');
+  timeDisplayEl.text(currentTime);
+}
+
+// for (i=9; i <18; i++) {
+//   if (current24Hour === i) {
+//     timeSlots(i-9).removeClass("past present future")
+//   }
+// }
+
+var firstSlot = timeSlots[0]
+var firstSlotEl = $('.slot')
+// $("firstSlotEl").removeClass("past present future")
+// firstSlotEl.addClass("future")
+// firstSlot.addClass("future");
+// $('.slot').removeClass("present")
+
+// var containerEl = $('.container')
+containerEl = document.getElementsByClassName('container')
+
+//Changing Background Color of slots
+
+// Initializing time to display
+timeDisplay();
+// setting display to update every 1000
+setInterval(timeDisplay,1000);
