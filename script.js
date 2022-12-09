@@ -22,31 +22,55 @@ $(function () {
   // TODO: Add code to display the current date in the header of the page.
 });
 var timeDisplayEl = $('#currentDay');
-var current24Hour = dayjs().format('H');
+var current24HourString = dayjs().format('H');
+// var current24Hour = Math.floor(current24HourString)
+var current24Hour = 10;
+
 // selecting all slot items to change background color
-// var timeSlots = $("[class*='slot']")
-var timeSlots = document.getElementsByClassName('slot')
+var timeSlots = document.querySelectorAll(".time-block")
 
 function timeDisplay() {
   var currentTime = dayjs().format('MMM/D/YYYY h:m a');
   timeDisplayEl.text(currentTime);
 }
 
-// for (i=9; i <18; i++) {
-//   if (current24Hour === i) {
-//     timeSlots(i-9).removeClass("past present future")
-//   }
-// }
+for (i=9; i <18; i++) {
+  if (current24Hour == i) {
+    if (timeSlots[i-9].classList.contains("past")) {
+    timeSlots[i-9].classList.remove("past")
+    }
+    if (timeSlots[i-9].classList.contains("future")) {
+      timeSlots[i-9].classList.remove("future")
+      }
+      timeSlots[i-9].classList.add("present")
+  } else if (current24Hour > i) {
+    if (timeSlots[i-9].classList.contains("present")) {
+    timeSlots[i-9].classList.remove("present")
+    }
+    if (timeSlots[i-9].classList.contains("future")) {
+      timeSlots[i-9].classList.remove("future")
+      }
+      timeSlots[i-9].classList.add("past")
+  } else if (current24Hour < i) {
+    if (timeSlots[i-9].classList.contains("present")) {
+    timeSlots[i-9].classList.remove("present")
+    }
+    if (timeSlots[i-9].classList.contains("past")) {
+      timeSlots[i-9].classList.remove("past")
+      }
+      timeSlots[i-9].classList.add("future")
+  }
+  
+}
 
-var firstSlot = timeSlots[0]
-var firstSlotEl = $('.slot')
+// var test = timeSlots[0]
+// test.classList.remove("past")
+
 // $("firstSlotEl").removeClass("past present future")
 // firstSlotEl.addClass("future")
 // firstSlot.addClass("future");
 // $('.slot').removeClass("present")
 
-// var containerEl = $('.container')
-containerEl = document.getElementsByClassName('container')
 
 //Changing Background Color of slots
 
